@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-03 22:20:46
+# Last Modified  : 2020-01-03 22:23:32
 # * FileName       : run.py
 #**************************************************
 
@@ -38,28 +38,27 @@ def parse_page(html):
     #在字符串中查找匹配店所有子串,返回一个列表
     items = re.findall(pattern, html)
     i=0 
-    L=[]
     for item in items:
-        i+=1
+       # i+=1
        # print(item[2].decode("utf-8").encode("gbk"))
        # print(i)
-
-               
-            L.append( item[0].decode("utf-8").encode("gbk")+","+
-             item[1].decode("utf-8").encode("gbk")+","+
-             item[2].decode("utf-8").encode("gbk")+","+
-             item[3].decode("utf-8").encode("gbk")+","+
-             item[4].decode("utf-8").encode("gbk")+","+
-             item[5].decode("utf-8").encode("gbk")+","+
-             item[6].decode("utf-8").encode("gbk")+","+
-             item[7].decode("utf-8").encode("gbk"))
-            return L
+        yield{
+           'title': item[0],
+            'red1': item[1],
+            'red2': item[2],
+            'red3': item[3],
+            'red4': item[4],
+            'red5': item[5],
+            'red6': item[6],
+            'blue': item[7],
+            
+        }
 
 def write_to_file(content):
     with io.open('AAAA.txt', 'a', encoding='utf-8')as f:
          #print(type(json.dumps(content)))
         #f.write("AAA")
-        f.write(content.encode(encoding='utf-8'))
+        f.write(json.dumps(content,ensure_ascii=False))
 
 def main():
     print("start---------------\n")
@@ -69,7 +68,6 @@ def main():
     url = "http://3g.henanfucai.com/Kais.do?id=9"
     html = get_page(url)
     for item in parse_page(html):
-        print(item)
         write_to_file(item)
     print("end---------------\n")
 
