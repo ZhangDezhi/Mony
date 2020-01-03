@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-03 22:20:46
+# Last Modified  : 2020-01-03 22:38:58
 # * FileName       : run.py
 #**************************************************
 
@@ -37,15 +37,14 @@ def parse_page(html):
 
     #在字符串中查找匹配店所有子串,返回一个列表
     items = re.findall(pattern, html)
+    print(len(items))
     i=0 
     L=[]
     for item in items:
         i+=1
        # print(item[2].decode("utf-8").encode("gbk"))
        # print(i)
-
-               
-            L.append( item[0].decode("utf-8").encode("gbk")+","+
+        L.append(item[0].decode("utf-8").encode("gbk")+","+
              item[1].decode("utf-8").encode("gbk")+","+
              item[2].decode("utf-8").encode("gbk")+","+
              item[3].decode("utf-8").encode("gbk")+","+
@@ -53,8 +52,7 @@ def parse_page(html):
              item[5].decode("utf-8").encode("gbk")+","+
              item[6].decode("utf-8").encode("gbk")+","+
              item[7].decode("utf-8").encode("gbk"))
-            return L
-
+    return L
 def write_to_file(content):
     with io.open('AAAA.txt', 'a', encoding='utf-8')as f:
          #print(type(json.dumps(content)))
@@ -63,8 +61,6 @@ def write_to_file(content):
 
 def main():
     print("start---------------\n")
-    print("---------------\n")
-    print("---------------\n")
 
     url = "http://3g.henanfucai.com/Kais.do?id=9"
     html = get_page(url)
