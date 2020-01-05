@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-03 22:50:18
+# Last Modified  : 2020-01-05 23:25:43
 # * FileName       : run.py
 #**************************************************
 
@@ -30,7 +30,7 @@ def get_page(url):
 def parse_page(html):
     print("parse_page______")
     #生成一个正则表达式
-    pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
+    pattern = re.compile('<ul.*?class="one".*?([a-z0-9_-]{10}).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
    # pattern = re.compile('<li.*?one.*?[.\n](.*?).*?>', re.S)
    # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>', re.S)
     #pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>', re.S)
