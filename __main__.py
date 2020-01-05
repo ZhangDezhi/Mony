@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-05 23:25:43
+# Last Modified  : 2020-01-05 23:46:40
 # * FileName       : run.py
 #**************************************************
 
@@ -14,6 +14,8 @@ import re
 import requests
 import io
 from requests import RequestException
+
+
 
 # 传入 url 将抓去页面结果返回
 def get_page(url):
@@ -28,12 +30,11 @@ def get_page(url):
 
 #解析网页字符串
 def parse_page(html):
-    print("parse_page______")
     #生成一个正则表达式
     pattern = re.compile('<ul.*?class="one".*?([a-z0-9_-]{10}).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
    # pattern = re.compile('<li.*?one.*?[.\n](.*?).*?>', re.S)
    # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>', re.S)
-    #pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>', re.S)
+   # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>', re.S)
 
     #在字符串中查找匹配店所有子串,返回一个列表
     items = re.findall(pattern, html)
@@ -54,7 +55,7 @@ def parse_page(html):
              item[7].decode("utf-8"))
     return L
 def write_to_file(content):
-    with io.open('AAAA.txt', 'a', encoding='utf-8')as f:
+    with io.open('out.txt', 'a', encoding='utf-8')as f:
         f.write(unicode(content + "\n"))
 
 
@@ -63,6 +64,7 @@ def main():
 
     url = "http://3g.henanfucai.com/Kais.do?id=9"
     html = get_page(url)
+    write_to_file("------------------")
     for item in parse_page(html):
         print(item)
         write_to_file(item)
