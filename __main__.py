@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-05 23:46:40
+# Last Modified  : 2020-01-06 05:22:16
 # * FileName       : run.py
 #**************************************************
 
@@ -13,6 +13,7 @@ import json
 import re      
 import requests
 import io
+import time
 from requests import RequestException
 
 
@@ -31,7 +32,7 @@ def get_page(url):
 #解析网页字符串
 def parse_page(html):
     #生成一个正则表达式
-    pattern = re.compile('<ul.*?class="one".*?([a-z0-9_-]{10}).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
+    pattern = re.compile('<ul.*?class="one".*?([0-9_-]{10}).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
    # pattern = re.compile('<li.*?one.*?[.\n](.*?).*?>', re.S)
    # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>', re.S)
    # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>', re.S)
@@ -60,10 +61,18 @@ def write_to_file(content):
 
 
 def main():
+
     print("start---------------\n")
+
 
     url = "http://3g.henanfucai.com/Kais.do?id=9"
     html = get_page(url)
+    #for num in range(1,5):  # 迭代 10 到 20 之间的数字
+    #    time.sleep(0.1)
+    #    url = "http://3g.henanfucai.com/KaiMore.do?id=9&pageno=%d"%(num)
+    #    print (url)
+    #    html += get_page(url)
+
     write_to_file("------------------")
     for item in parse_page(html):
         print(item)
