@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-06 05:26:47
+# Last Modified  : 2020-01-06 05:34:18
 # * FileName       : run.py
 #**************************************************
 
@@ -67,7 +67,7 @@ def main():
 
     url = "http://3g.henanfucai.com/Kais.do?id=9"
     html = get_page(url)
-    for num in range(1,5):  # 迭代 10 到 20 之间的数字
+    for num in range(1,20):  # 迭代 10 到 20 之间的数字
         time.sleep(0.1)
         url = "http://3g.henanfucai.com/KaiMore.do?id=9&pageno=%d"%(num)
         print (url)
