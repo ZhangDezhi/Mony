@@ -1,16 +1,18 @@
 
 #!/usr/bin/env python
-# coding:utf-8
+# -!- coding: utf-8 -!-
 
 #***************************************************
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
-# * Create Time    : 2020-01-07 20:21
-# Last Modified  : 2020-01-08 17:20:19
+# * Create Time    : 2020-01-09 15:55
+# Last Modified  : 2020-01-09 15:56:11
 # * FileName       : __plotly__.py
 #**************************************************
-import plotly.express as px
 
-df = px.data.gapminder().query("country=='Canada'")
-fig = px.line(df, x="year", y="lifeExp", title='Life expectancy in Canada')
+
+import plotly.graph_objects as go
+fig = go.Figure(data=go.Bar(y=[2, 3, 1]))
 fig.show()
+
+

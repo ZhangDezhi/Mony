@@ -1,11 +1,11 @@
 # !/usr/bin/env python
-#vim: set fileencoding:utf-8
+# -!- coding: utf-8 -!-
 
 #***************************************************
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-06 05:34:18
+# Last Modified  : 2020-01-09 16:12:11
 # * FileName       : run.py
 #**************************************************
 
@@ -15,7 +15,6 @@ import requests
 import io
 import time
 from requests import RequestException
-
 
 
 # 传入 url 将抓去页面结果返回
@@ -32,7 +31,7 @@ def get_page(url):
 #解析网页字符串
 def parse_page(html):
     #生成一个正则表达式
-    pattern = re.compile('<ul.*?class="one".*?(\d\d\d\d-\d\d-[0-9]+).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
+    pattern = re.compile(r'<ul.*?class="one".*?(\d\d\d\d-\d\d-[0-9]+).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
    # pattern = re.compile('<li.*?one.*?[.\n](.*?).*?>', re.S)
    # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>', re.S)
    # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>', re.S)
@@ -46,18 +45,35 @@ def parse_page(html):
         i+=1
        # print(item[2].decode("utf-8").encode("gbk"))
        # print(i)
-        L.append(item[0].decode("utf-8")+","+
-             item[1].decode("utf-8")+","+
-             item[2].decode("utf-8")+","+
-             item[3].decode("utf-8")+","+
-             item[4].decode("utf-8")+","+
-             item[5].decode("utf-8")+","+
-             item[6].decode("utf-8")+","+
-             item[7].decode("utf-8"))
+        try:
+        # Python3
+             L.append(item[0]+","+
+               item[1]+","+
+               item[2]+","+
+               item[3]+","+
+               item[4]+","+
+               item[5]+","+
+               item[6]+","+
+               item[7])
+        except ImportError:
+        # Python2
+            L.append(item[0].decode("utf-8")+","+
+               item[1].decode("utf-8")+","+
+               item[2].decode("utf-8")+","+
+               item[3].decode("utf-8")+","+
+               item[4].decode("utf-8")+","+
+               item[5].decode("utf-8")+","+
+               item[6].decode("utf-8")+","+
+               item[7].decode("utf-8"))
     return L
 def write_to_file(content):
     with io.open('out.txt', 'a', encoding='utf-8')as f:
-        f.write(unicode(content + "\n"))
+        try:
+        # Python3
+           f.write(str(content + "\\n"))
+        except ImportError:
+        # Python2
+           f.write(unicode(content + "\\n"))
 
 
 def main():
