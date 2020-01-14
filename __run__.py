@@ -41,12 +41,23 @@ while 1:
     pass # do something
 file.close()
 for i in range(5):
-    red1=list_1[ random.randint(0,num)]
-    red2=list_2[ random.randint(0,num)]
-    red3=list_3[ random.randint(0,num)]
-    red4=list_4[ random.randint(0,num)]
-    red5=list_5[ random.randint(0,num)]
-    red6=list_6[ random.randint(0,num)]
-    blue=list_blue[ random.randint(0,num)]
+    try:
+        # Python3
+        red1=list_1[ random.randint(1,num)]
+        red2=list_2[ random.randint(1,num)]
+        red3=list_3[ random.randint(1,num)]
+        red4=list_4[ random.randint(1,num)]
+        red5=list_5[ random.randint(1,num)]
+        red6=list_6[ random.randint(1,num)]
+        blue=list_blue[ random.randint(1,num)]
+    except ImportError:
+        # Python2
+        red1=list_1[ random.randint(0,num)]
+        red2=list_2[ random.randint(0,num)]
+        red3=list_3[ random.randint(0,num)]
+        red4=list_4[ random.randint(0,num)]
+        red5=list_5[ random.randint(0,num)]
+        red6=list_6[ random.randint(0,num)]
+        blue=list_blue[ random.randint(0,num)]
     print (red1 +"," + red2 +"," + red3 + ","+ red4 + "," + red5 + "," + red6 + "," + blue)
 

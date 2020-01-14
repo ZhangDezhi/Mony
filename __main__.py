@@ -70,10 +70,10 @@ def write_to_file(content):
     with io.open('out.txt', 'a', encoding='utf-8')as f:
         try:
         # Python3
-           f.write(str(content + "\\n"))
+           f.write(str(content + "\n"))
         except ImportError:
         # Python2
-           f.write(unicode(content + "\\n"))
+           f.write(unicode(content + "\n"))
 
 
 def main():
