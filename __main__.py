@@ -5,7 +5,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2019-12-17 21:17
-# Last Modified  : 2020-01-09 16:12:11
+# Last Modified  : 2020-01-19 22:35:53
 # * FileName       : run.py
 #**************************************************
 
@@ -79,8 +79,6 @@ def write_to_file(content):
 def main():
 
     print("start---------------\n")
-
-
     url = "http://3g.henanfucai.com/Kais.do?id=9"
     html = get_page(url)
     for num in range(1,20):  # 迭代 10 到 20 之间的数字
