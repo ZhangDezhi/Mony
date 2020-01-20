@@ -6,7 +6,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2020-01-09 15:55
-# Last Modified  : 2020-01-20 22:48:05
+# Last Modified  : 2020-01-20 23:29:55
 # * FileName       : __plotly__.py
 #**************************************************
 
@@ -59,38 +59,51 @@ size1=[]
 x1=[]
 y1=[]
 isize=10
-for i in list_1:
+i=0
+for tmp in list_1:
+    
     now = list_1[i]
-    _text = "0 "
     _color = 100
-    _opacity = 0.1
+    _opacity = 0.5
     _size = 10
-    #[START]
+    _text = list_date[i] 
+    i=i+1
     if y1.count(now) > 0:
+    #[START]
       _index=y1.index(now)
+
       if _index >= 0:
 
           x1.pop(_index)
+          x1.insert(_index,0)
+
           y1.pop(_index)
+          y1.insert(_index,now)
 
-          _text ="text" 
+          _text = text1[_index] + "</br>" + _text
           text1.pop(_index)
+          text1.insert(_index,_text)
 
-          _color = color1[_index]
+          _color += color1[_index]
           color1.pop(_index)
+          color1.insert(_index,_color)
          
           _opacity = opacity1[_index]
           opacity1.pop(_index)
+          opacity1.insert(_index,_opacity)
 
-          _size = size1[_index]
+          _size = size1[_index] +5
           size1.pop(_index)
+          size1.insert(_index,_size)
     #[END]
-    x1.append(0)
-    y1.append(now)
-    text1.append(_text)
-    color1.append(_color)
-    opacity1.append(_opacity)
-    size1.append(_size)
+    else:
+        x1.append(0)
+        y1.append(now)
+        text1.append(_text)
+        color1.append(_color)
+        opacity1.append(_opacity)
+        size1.append(_size)
+
 
 trace_red0 = go.Scatter(
         x=x1,
