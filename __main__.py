@@ -32,11 +32,13 @@ def get_page(url):
 def parse_page(html):
     L=[]
     #生成一个正则表达式
-    pattern = re.compile(r'<ul.*?class="one".*?(\d\d\d\d-\d\d-[0-9]+).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
+    pattern = re.compile(r'<ul.*?class="one".*?(\d{4}-\d{1,2}-[0-9]+).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?red">(.*?)</span>.*?blue">(.*?)</span>.*?/li>', re.S)
+
     # pattern = re.compile('<li.*?one.*?[.\n](.*?).*?>', re.S)
     # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>', re.S)
     # pattern = re.compile('<ul.*?class="one".*?[.\n](.*?).*?class="two".*?[.\n].*?red">(.*?)</span>.*?red">(.*?)</span>', re.S)
 
+    #print(html)
     #在字符串中查找匹配店所有子串,返回一个列表
     items = re.findall(pattern, html)
     print(len(items))
